@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+
 
 import './Product.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const Product = (props) => {
-    const {img,name,seller,price,stock}=props.product;
+    const {img,name,seller,price,stock,key}=props.product;
 
     
     return (
@@ -16,13 +18,17 @@ const Product = (props) => {
 
         </div>
         <div className='product-right'>
-        <h4 className='product-name'>{name}</h4>
+        <h4 className='product-name'> <Link to={"/product/"+ key}>{name}</Link> </h4>
         <br />
         <p><small>By: {seller}</small></p>
         <p style={{fontWeight:"bold"}}>${price}</p>
         <br />
         <p>Only {stock} left in stock - order soon</p>
-        <button className='main-button' onClick={()=>props.handleAddProduct(props.product)} > <FontAwesomeIcon icon={faShoppingCart} /> Add To Cart</button>
+
+        { props.showAddToCart=== true && <button className='main-button' onClick={()=>props.handleAddProduct(props.product)}>
+             <FontAwesomeIcon icon={faShoppingCart} /> Add To Cart</button>
+}
+
         </div>
         
         

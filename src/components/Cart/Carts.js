@@ -10,7 +10,12 @@ const Carts = (props) => {
     
     for(let i=0; i< cart.length; i++){
         const product=cart[i];
-        total = total + product.price;
+        const productPrice= product.price;
+
+        const productFullprice=productPrice*product.quantity;
+
+        total = total + productFullprice;
+        
     }
 
     let shipping= 0;
@@ -41,6 +46,11 @@ const Carts = (props) => {
         <h4>Shipping Cost:{formatNumber(shipping)}</h4>
         <h4>Tax + Vat: {formatNumber(tax)}</h4>
         <h4>Total Price:{formatNumber(finalPrice)}</h4>
+       
+       {
+        props.children
+       }
+
     </div>
    );
 };
